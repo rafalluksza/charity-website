@@ -1,0 +1,18 @@
+.header {
+  height: 963px;
+  width: 100vw;
+  .header-img {
+    background-image: url("../../assets/Home-Hero-Image.jpg");
+    height: 100%;
+    transform: translateX(-483px);
+  }
+}
+
+.start {
+  width: 672px;
+  height: 350px;
+  transform: translateX(952px) translateY(342px);
+  border: 1px solid black;
+
+
+}
