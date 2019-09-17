@@ -21,8 +21,8 @@ const Signing = () => {
 
                     </div>
                     <div className='form-buttons'>
-                        <button className='btnReg'>Zaloguj się</button>
                         <button className='btnReg'>Załóż konto</button>
+                        <button className='btnReg'>Zaloguj się</button>
                     </div>
                 </form>
 

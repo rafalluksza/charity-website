@@ -8,10 +8,9 @@ const HomeHeader = () => {
 
     return (
         <div className='header'>
-            <div className='header-img'>
-                <TopMenu/>
-                <Intro/>
-            </div>
+            <div className='header-img' />
+            <TopMenu/>
+            <Intro/>
         </div>
     )
 }

@@ -5,6 +5,9 @@
   align-items: center;
   width: 503px;
   height: 500px;
+  position: absolute;
+  left: calc(50% - 251px);
+  top: 20vw;
   h2 {
     padding-bottom: $padding-main*2;
   }
@@ -16,6 +19,7 @@
     background-color: $color-background;
     width: 384px;
     height: 328px;
+    margin: $padding-main*2 0;
     input {
       outline: none;
       margin: 0;

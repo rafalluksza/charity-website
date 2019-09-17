@@ -9,7 +9,7 @@ const Intro = () => {
 
     return (
         <div className='intro'>
-            <h2>Zacznij Pomagać! <br />Oddaj niechciane rzeczy w zaufane ręce</h2>
+            <h2>Zacznij pomagać! <br />Oddaj niechciane rzeczy w zaufane ręce</h2>
             <Decoration/>
             <div className='intro-btn'>
                 <Button1 />
