@@ -1,5 +1,21 @@
 @import "settings/reset";
-@import "settings/fonts";
 @import "settings/colors";
+@import "settings/variables";
+@import "settings/fonts";
+
+
+@import "buttons/buttons";
+
 
 @import "layouts/homeHeader";
+@import "layouts/homeThreeColumns";
+@import "layouts/homeSimpleSteps";
+@import "layouts/homeAbout";
+@import "layouts/homeWho";
+@import "layouts/homeContact";
+
+@import "layouts/login";
+
+
+
+

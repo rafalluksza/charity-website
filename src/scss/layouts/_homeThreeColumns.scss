@@ -1,0 +1,24 @@
+.threeColumns {
+  width: 100vw;
+  height: 384px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $color-accent;
+  .column-item {
+    width: 334px;
+    height: 252px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-weight: lighter;
+      padding: $padding-main 0;
+    }
+    p {
+      text-align: center;
+      padding-top: $padding-main;
+    }
+  }
+}

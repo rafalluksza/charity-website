@@ -1,6 +1,6 @@
 import React from 'react';
 import Intro from "./Intro";
-import Nav from "./Nav";
+import TopMenu from "./TopMenu";
 
 
 const HomeHeader = () => {
@@ -9,7 +9,7 @@ const HomeHeader = () => {
     return (
         <div className='header'>
             <div className='header-img'>
-                <Nav/>
+                <TopMenu/>
                 <Intro/>
             </div>
         </div>
