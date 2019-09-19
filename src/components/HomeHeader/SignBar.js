@@ -1,14 +1,13 @@
 import React from 'react'
-import NavigationItem from "./NavigationItem";
-
+import LogRegItem from "./LogRegItem";
 
 const SignBar = () => {
 
 
     return (
         <>
-            <NavigationItem href={'/logowanie/'} name={'Zaloguj'}/>
-            <NavigationItem href={'/rejestracja'} name={'Załóż konto'}/>
+            <LogRegItem href={'/logowanie/'} name={'Zaloguj'}/>
+            <LogRegItem href={'/rejestracja'} name={'Załóż konto'}/>
         </>
     )
 }

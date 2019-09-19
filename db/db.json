@@ -1,0 +1,110 @@
+{
+  "fund": [
+    {
+      "id": 1,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 2,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 3,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 4,
+      "name": "strona2 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 5,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 6,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 7,
+      "name": "strona 3'fdsafassdfa o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 8,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 9,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    }
+  ],
+  "ngo": [
+    {
+      "id": 1,
+      "name": "Lorem ipsum NGO'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 2,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 3,
+      "name": "Fundacja 'Loremdfsaadfs o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 4,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 5,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    }
+  ],
+  "local": [
+    {
+      "id": 1,
+      "name": "Lorem ipsum local'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 2,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "id": 3,
+      "name": "Fundacja 'Dbam o zdrowie'",
+      "goal": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "items": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    }
+  ]
+}

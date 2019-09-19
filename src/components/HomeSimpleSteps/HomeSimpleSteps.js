@@ -1,5 +1,5 @@
 import React from 'react'
-import Button1 from "../Buttons/Button2";
+import Button1 from "../Buttons/Button1";
 import StepsTitle from "./StepsTitle";
 import StepsRow from "./StepsRow";
 

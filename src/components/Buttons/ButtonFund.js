@@ -1,10 +1,16 @@
 import React from 'react';
 
+const ButtonFund = (props) => {
 
-const ButtonFund = () => {
+    const handleClick = () => {
+
+        if (typeof props.setPageToRender ==='function') {
+            props.setPageToRender(props.name)
+        }
+    }
 
     return (
-        <button className='btnWho'>Fundacjom</button>
+        <button onClick={handleClick} className='btnWho' >{props.text}</button>
     )
 }
 

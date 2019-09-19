@@ -7,7 +7,7 @@ const HomeHeader = () => {
 
 
     return (
-        <div className='header'>
+        <div id='header'>
             <div className='header-img' />
             <TopMenu/>
             <Intro/>
