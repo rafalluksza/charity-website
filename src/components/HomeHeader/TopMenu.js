@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from "./Navigation";
-import SignBar from "./SignBar";
+import Navigation from "../Navigation/Navigation";
+import SignBar from "../Navigation/SignBar";
 
 
 const TopMenu = () => {
@@ -14,7 +14,6 @@ const TopMenu = () => {
             <ul className='navigation'>
                 <Navigation/>
             </ul>
-
         </div>
     )
 }

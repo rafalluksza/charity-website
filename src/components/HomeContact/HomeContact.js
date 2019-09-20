@@ -1,5 +1,6 @@
 import React from 'react'
 import Decoration from "../HomeHeader/Decoration";
+import ContactForm from "./ContactForm";
 
 
 const HomeContact = () => {
@@ -11,25 +12,7 @@ const HomeContact = () => {
                 <div className='form-column'>
                     <h2>Skontaktuj się z nami</h2>
                     <Decoration/>
-                    <form >
-                        <div className='form'>
-                            <div className='form-inputs'>
-                                <div className='form-item'>
-                                    <label> Wpisz swoje imię</label>
-                                    <input type='text' placeholder='Krzysztof'/>
-                                </div>
-                                <div className='form-item'>
-                                    <label> Wpisz swój email</label>
-                                    <input type='email' placeholder='abc@xyz.pl'/>
-                                </div>
-                            </div>
-                            <div className='form-textarea'>
-                                <label> Wpisz swoją wiadomość</label>
-                                <textarea placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida eget justo in imperdiet. Phasellus et lacinia libero. Donec elementum bibendum mi, et consectetur purus euismod ut. Donec faucibus sit.'/>
-                            </div>
-                        </div>
-                        <button className='btnReg'>Wyślij</button>
-                    </form>
+                    <ContactForm/>
                 </div>
                 <div className='footer'>
                     <p>Copyright by Coders Lab</p>
