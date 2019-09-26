@@ -1,19 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Decoration from "../HomeHeader/Decoration";
-import TopMenu from "../HomeHeader/TopMenu";
-import {Link, withRouter} from 'react-router-dom'
+import Navigation from "../Navigation/Navigation";
+import {withRouter} from 'react-router-dom'
 import * as ROUTES from './../../constants/routes'
-import { withFirebase } from '../Firebase';
+import {FirebaseContext, withFirebase} from '../Firebase';
 
 const SignUpPage = () => {
 
     return (
         <div>
-            <TopMenu/>
+            <Navigation/>
             <div className='login'>
                 <h2>Załóż konto</h2>
                 <Decoration/>
-                <SignUpForm/>
+                <FirebaseContext.Consumer>
+                    {firebase => <SignUpForm firebase={firebase}/>}
+                </FirebaseContext.Consumer>
             </div>
         </div>
 
@@ -32,92 +34,110 @@ const SignUpFormBase = (props) => {
     const [passwordValidation, setPasswordValidation] = useState(null);
     const [secondPasswordValidation, setSecondPasswordValidation] = useState(null);
 
-    useEffect(()=> {
-        console.log (emailValue, passwordValue, secondPasswordValue);
-        validateEmail();
-        validatePassword();
-        validateSecondPassword();
-    },[emailValue, passwordValue, secondPasswordValue])
+    const [regStatus, setRegStatus] = useState(null);
+
+    // useEffect(()=> {
+    //     validateEmail();
+    //     validatePassword();
+    //     validateSecondPassword();
+    // },[emailValue, passwordValue, secondPasswordValue])
 
     const validateEmail = () => {
-        console.log (emailValue);
 
         const re = /\S+@\S+\.\S+/;
-        console.log(re.test(emailValue))
         return setEmailValidation(re.test(emailValue))
     };
 
     const validatePassword = () => {
-        console.log (passwordValue);
 
         if (passwordValue.length >= 6)
             return setPasswordValidation(true)
+        else
+            return setPasswordValidation(false)
     };
 
     const validateSecondPassword = () => {
-        console.log (secondPasswordValue);
 
         if (secondPasswordValue.length >= 6 && passwordValue === secondPasswordValue)
             return setSecondPasswordValidation(true)
+        else
+            return setSecondPasswordValidation(false)
     };
 
+    const goToLanding = () => {
+        setTimeout(()=>{
+            props.history.push(ROUTES.LANDING);
+        },3000)
+    }
 
-    const submitForm = (e) => {
-        e.preventDefault();
-        const username = emailValue;
-        const email = emailValue;
-        const password = passwordValue;
-
-
-        console.log (emailValidation, passwordValidation, secondPasswordValidation);
-
+    const registration = () => {
         if (emailValidation === true && passwordValidation=== true && secondPasswordValidation===true){
-            console.log('true')
             props.firebase
-                .doCreateUserWithEmailAndPassword(email, password)
+                .doCreateUserWithEmailAndPassword(emailValue, passwordValue)
                 .then(authUser => {
                     return props.firebase
                         .user(authUser.user.uid)
                         .set({
-                            username,
-                            email,
+                            username: emailValue,
+                            email: emailValue,
                         });
                 })
-                .then(authUser => {
+                .then(() => {
                     setEmailValue('');
                     setPasswordValue('');
                     setSecondPasswordValue('');
-                    props.history.push(ROUTES.LANDING);
+                    setRegStatus(true);
+                    goToLanding();
                 }).catch(error=> {
-                    console.log(error)
+                console.log(error)
             })
         } else {
             console.log('untrue')
+            setRegStatus(false);
         }
+    }
 
+    const submitForm = (e) => {
+        validateEmail()
+        validatePassword()
+        validateSecondPassword()
+        e.preventDefault();
+        registration()
     };
+
+    const clickToSingIn = () => {
+        props.history.push(ROUTES.SIGN_IN)
+    }
 
 
     return (
         <form onSubmit={submitForm}>
             <div className='form'>
+                <div>
+                    { regStatus === null && <div/>}
+                    { regStatus === true && <div style={{color:'green'}}>Gratulacje! Rejestracja udana!</div>}
+                    { regStatus === false &&  <div style={{color:'red'}}>Rejestracja nieudana!</div>}
+                </div>
                 <label> Email</label>
                 <input type='email' onChange={e => setEmailValue(e.target.value)} value={emailValue}/>
-                <div className='invalid'>{emailValidation ? '' : 'Podany email jest nieprawidłowy'}</div>
-
+                { emailValidation === null && <div/>}
+                { emailValidation === true && <div/>}
+                { emailValidation === false &&  <div className='invalid'>Podany email jest nieprawidłowy</div>}
 
                 <label> Hasło</label>
                 <input type='password' placeholder='podaj hasło' onChange={e => setPasswordValue(e.target.value) } value={passwordValue}/>
-                <div className='invalid'>{passwordValidation ? '' : 'Podane hasło jest za krótkie'}</div>
+                { passwordValidation === null && <div/>}
+                { passwordValidation === true && <div/>}
+                { passwordValidation === false &&  <div className='invalid'>Podane hasło jest za krótkie</div>}
 
                 <label> Powtórz hasło</label>
                 <input type='password' placeholder='potwierdź hasło' onChange={e => setSecondPasswordValue(e.target.value) } value={secondPasswordValue}/>
-                <div className='invalid'>{secondPasswordValidation ? '' : 'Podane hasła muszą byc takie same'}</div>
+                <div className='invalid'>{secondPasswordValidation===null ? '' : 'Podane hasła muszą byc takie same'}</div>
 
 
             </div>
             <div className='form-buttons'>
-                <button className='btnReg'><Link to='/logowanie'> Zaloguj się </Link></button>
+                <button onClick={clickToSingIn} className='btnReg'> Zaloguj się </button>
                 <button type='submit' className='btnReg'>Załóż konto</button>
             </div>
         </form>

@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import axios from "axios";
 import TableData from "./TableData";
 import Pagination from "./Pagination";
+import {withFirebase} from "../Firebase/context";
 
 
 const TableFund = (props) => {
 
-    //fetching data from database
-    const url = `http://localhost:4000/${props.path}`;
+    const url = `${props.path}`;
+    // console.log(url);
 
     //pagination
     const [posts, setPosts] = useState([]);
@@ -15,18 +15,22 @@ const TableFund = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
 
+    //getting data from firebase
 
-    useEffect( () => {
-        const fetchData = async () => {
-            setLoading(true)
-            const result = await axios.get(url);
-            // console.log(result)
-            setPosts(result.data);
+    useEffect(()=> {
+        setLoading(true);
+
+        props.firebase.db.ref(`who/${url}`).on('value', snapshot => {
+            const postsObject = snapshot.val();
+            const postsList = Object.keys(postsObject).map(key => ({
+                ...postsObject[key],
+                uid: key,
+            }));
+            setPosts(postsList);
             setLoading(false)
-        };
+        });
+    },[url]);
 
-        fetchData();
-    }, [url]);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -37,10 +41,12 @@ const TableFund = (props) => {
 
     return (
         <div className="table">
-            <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
+            { url === 'fund' && <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>}
+            { url === 'local' && <p> Lorem ipsum blablaba</p>}
+            { url === 'ngo' && <p> Lorem ipsum 3 strona</p>}
             <TableData posts={currentPosts} loading={loading}/>
             <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
     )
 }
-export default TableFund;
+export default withFirebase(TableFund);

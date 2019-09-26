@@ -1,29 +1,47 @@
-import React from 'react'
-import {Link} from "react-scroll";
-import * as ROUTES from './../../constants/routes';
+import React from 'react';
+import NavMenu from "./NavMenu";
+import LoginMenu from "./LoginMenu";
+// import { withFirebase } from "../Firebase";
+// import { getLogin } from "../Redux/actions/actions";
+// import {compose} from 'redux';
+// import {connect} from 'react-redux'
 
 
+const Navigation = (props, {dispatch}) => {
 
-const Navigation = () => {
+    // const [authUser, setAuthUser] = useState(null);
+    //
+    //
+    //
+    // useEffect(()=> {
+    //     console.log(authUser)
+    //     props.firebase.auth.onAuthStateChanged(authUser => {
+    //         authUser
+    //             ? props.authenticateUser(authUser)
+    //             : props.authenticateUser(null)
+    //     })
+    //
+    //
+    // },[authUser]);
+
     return (
-        <>
-            <li className='item'>
-                <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to={ROUTES.LANDING}>Start</Link>
-            </li>
-            <li className='item'>
-                <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='simpleSteps'>O co chodzi?</Link>
-            </li>
-            <li className='item'>
-                <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='about'>O nas</Link>
-            </li>
-            <li className='item'>
-                <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='who'>Fundacja i organizacje</Link>
-            </li>
-            <li className='item'>
-                <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='contact'>Kontakt</Link>
-            </li>
-        </>
+        <div className='topMenu'>
+                <LoginMenu/>
+                <NavMenu/>
+        </div>
     )
 }
+//
+// const mapState = state => {
+//     console.log(state)
+//     return ({user: state.user})
+// }
+//
+// const mapDispatch = dispatch => ({authenticateUser: getUser => dispatch(getLogin(getUser))})
+//
+//
+// export default compose(
+//     withFirebase,
+//     connect(mapState, mapDispatch),)(Navigation);
 
 export default Navigation;

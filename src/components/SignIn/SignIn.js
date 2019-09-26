@@ -1,24 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import Decoration from "../HomeHeader/Decoration";
-import TopMenu from "../HomeHeader/TopMenu";
-import {Link, withRouter} from 'react-router-dom';
+import Navigation from "../Navigation/Navigation";
+import { withRouter} from 'react-router-dom';
 import {withFirebase} from "../Firebase";
 import * as ROUTES from '../../constants/routes';
 import {compose} from 'recompose';
+// import {connect} from 'react-redux';
+
 
 const SignInPage = () => {
-
-
     return (
         <div>
-            <TopMenu/>
+            <Navigation/>
             <div className='login'>
                 <h2>Zaloguj się</h2>
                 <Decoration/>
                 <SignInForm/>
             </div>
         </div>
-
     )
 }
 
@@ -33,35 +32,48 @@ const SignInFormBase = (props) => {
     const [passwordValidation, setPasswordValidation] = useState(true)
 
 
+    // useEffect(()=> {
+    //     validateEmail();
+    // },[emailValue]);
+    //
+    // useEffect(()=> {
+    //     validatePassword();
+    // },[passwordValue]);
 
-    useEffect(()=> {
-        validateEmail();
-        validatePassword();
-    });
-
+    const re = /\S+@\S+\.\S+/;
     const submitForm = (e) => {
-        props.firebase
-            .doSingInWithEmailAndPassword(emailValue,passwordValue)
-            .then(()=> {
-                setEmailValue('');
-                setPasswordValue('');
-                props.history.push(ROUTES.LANDING);
-            })
-            .catch(error => console.log(error));
-
-        e.preventDefault()
-    };
-
-    const validateEmail = () => {
-        const re = /\S+@\S+\.\S+/;
-        return setEmailValidation(re.test(emailValue))
-    };
-
-    const validatePassword = () => {
+        if (re.test(emailValue) === false)
+            return setEmailValidation(false)
         if (passwordValue.length < 6)
             return setPasswordValidation(false)
+        e.preventDefault()
+
+        if (emailValidation === true && passwordValidation === true) {
+            props.firebase
+                .doSingInWithEmailAndPassword(emailValue, passwordValue)
+                .then(() => {
+                    setEmailValue('');
+                    setPasswordValue('');
+                    props.history.push(ROUTES.LANDING);
+                })
+                .catch(error => console.log(error));
+        }
+
     };
 
+    // const validateEmail = () => {
+    //     const re = /\S+@\S+\.\S+/;
+    //     return setEmailValidation(re.test(emailValue))
+    // };
+    //
+    // const validatePassword = () => {
+    //     if (passwordValue.length < 6)
+    //         return setPasswordValidation(false)
+    // };
+
+    const clickToSignUp = () => {
+        props.history.push(ROUTES.SIGN_UP)
+    }
 
     return (
         <form onSubmit={submitForm}>
@@ -76,7 +88,7 @@ const SignInFormBase = (props) => {
 
             </div>
             <div className='form-buttons'>
-                <button className='btnReg'><Link to='/rejestracja'>Załóż konto</Link></button>
+                <button onClick={clickToSignUp} className='btnReg'>Załóż konto</button>
                 <button className='btnReg' type='submit'>Zaloguj się</button>
             </div>
         </form>
@@ -86,7 +98,6 @@ const SignInFormBase = (props) => {
 
 const SignInForm = compose(
     withRouter,
-    withFirebase,)
-    (SignInFormBase);
-
+    withFirebase
+)(SignInFormBase);
 export {SignInForm}

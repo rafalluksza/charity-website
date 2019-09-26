@@ -1,13 +1,12 @@
 #header {
   height: 963px;
   width: 100vw;
-
   .header-img {
-    background-image: url("../../assets/Home-Hero-Image.jpg");
+    background-image: url('./../../assets/Home-Hero-Image.jpg');
     background-repeat: no-repeat;
     height: 100%;
-    position: relative;
     left: -483px;
+    position: relative;
   }
 }
 
@@ -34,28 +33,31 @@
   }
 }
 
-.topMenu {
-  //border: 1px solid black;
-  width: 683px;
-  height: 95px;
-  position: absolute;
-  right: 50px;
-  top: 50px;
-}
-
-.signBar {
-  //border: 1px solid black;
-  height: 36px;
-  width: auto;
+.square-container{
   display: flex;
-  justify-content: flex-end;
-  margin-right: $padding-main*2;
-  .item {
-    width: 90px;
-    height: auto;
-    .item-link {
-
+  margin-top: $padding-main*2;
+  .square {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+    h3 {
+      font-size: 2rem;
+      text-align: center;
+    }
+    span {
+      font-size: 1.3rem;
+      width: 100px;
+      text-align: center;
+      margin-top: $padding-main/2;
     }
   }
 }
 
+.square:after {
+  border: 1px solid black;
+  content: '';
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: rotate(45deg);
+}

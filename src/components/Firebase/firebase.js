@@ -9,6 +9,7 @@ const config = {
     projectId: "charity-website-c429a",
     storageBucket: "charity-website-c429a.appspot.com",
     messagingSenderId: "715037738031",
+    appId: "1:715037738031:web:ccfe6e9991e943082872da"
 };
 
 
@@ -38,7 +39,38 @@ class Firebase {
 
     user = uid => this.db.ref(`users/${uid}`);
 
-    users = () => this.db.ref(`users`);
+    users = () => this.db.ref('users');
+
+
+//    Message API
+
+    message = uid => this.db.ref(`messages/${uid}`);
+
+    messages = () => this.db.ref('messages');
+
+//    Form API
+
+    form = uid => this.db.ref(`forms/${uid}`);
+
+    forms = () => this.db.ref('forms');
+
+//    Who API
+
+    who = () => this.db.ref('who');
+
+    fund = uid => this.db.ref(`who/fund/${uid}`);
+
+    funds = () => this.db.ref('who/fund');
+
+    local = uid => this.db.ref(`who/local/${uid}`);
+
+    locals = () => this.db.ref('who/local');
+
+    ngo = uid => this.db.ref(`who/ngo/${uid}`);
+
+    ngos = () => this.db.ref('who/ngo');
+
+
 
 }
 

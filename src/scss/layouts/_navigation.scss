@@ -1,4 +1,31 @@
 
+.topMenu {
+  //border: 1px solid black;
+  width: 683px;
+  height: 95px;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  z-index: 2;
+}
+
+.signBar {
+  //border: 1px solid black;
+  height: 36px;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: $padding-main*2;
+  .item {
+    width: 90px;
+    height: auto;
+    .item-link {
+
+    }
+  }
+}
+
+
 
 .navigation {
   width: 100%;
