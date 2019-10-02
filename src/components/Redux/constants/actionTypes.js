@@ -9,6 +9,7 @@ export const SEND_FORM = '';
 
 export const GET_DATA = '[UserData] get user data';
 export const CHECK_LOG = '[UserData] check if user is logged in';
-export const SET_USER_EMAIL = '[UserData] setting user email'
+export const SET_ADMIN = '[UserData] setting admin';
+export const SET_USER_DATA = '[UserData] setting user data';
 
 // export const GET_LOGIN =

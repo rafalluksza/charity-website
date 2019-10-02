@@ -2,11 +2,13 @@ import React from 'react';
 import * as ROUTES from "../../constants/routes";
 import { withRouter} from 'react-router-dom';
 import {compose} from "recompose";
+import {connect} from "react-redux";
 
-const Button2 = ({history}) => {
-
+const Button2 = ({history, logged}) => {
     const handleClick = () => {
-        history.push(ROUTES.SIGN_UP);
+        logged ?
+            history.push(ROUTES.SIGN_UP) :
+            history.push(ROUTES.GIVEBACK)
     }
 
     return (
@@ -14,4 +16,12 @@ const Button2 = ({history}) => {
     )
 }
 
-export default compose(withRouter)(Button2);
+const mapState = state => {
+    return {
+        logged: state.firebase.auth.isEmpty,
+    }
+}
+
+export default compose(
+    withRouter,
+    connect(mapState,null))(Button2);

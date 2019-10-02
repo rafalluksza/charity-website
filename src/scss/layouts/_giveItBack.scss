@@ -1,5 +1,5 @@
 #header-gib {
-  height: 963px;
+  height: 850px;
   width: 100vw;
   .header-img {
     background-image: url('./../../assets/Form-Hero-Image.jpg');
@@ -10,7 +10,13 @@
   }
 }
 
-
+.bg-form {
+  background-image: url("./../../assets/Background-Form.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: $padding-main;
+}
 
 .important {
   width: 100vw;
@@ -43,8 +49,59 @@
   }
 }
 
+.form-container {
+  margin-left: $main-padding*4;
+  width: 800px;
+  height: auto;
+  min-height: 500px;
+  p {
+    color: $color-text;
+  }
+  h3 {
+    margin: $main-padding*2 0 $main-padding 0;
+  }
+}
+
 .firstStepForm {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  label {
+  }
+}
+
+.form-select{
+  width: 200px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.form-btns {
+  display:flex;
+  width: 300px;
+  justify-content: space-between;
+}
+
+.flex-row-cs {
+  display: flex;
+}
+
+.flex-column-cs {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-w {
+  width: 200px;
+}
+
+.form-column {
+  width: 300px;
+}
+
+.thankNote {
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0 0 10px;
+  text-align: center;
 }

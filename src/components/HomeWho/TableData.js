@@ -10,23 +10,19 @@ const TableData = ({loading, posts})=> {
     }
 
     return (
-        <ul>
-            {posts.map(item => (
-                <li key={item.id}>
                     <table>
                         <tbody>
-                        <tr>
+                        {posts.map(item => (
+                        <tr key={item.uid}>
                             <td>
                                 <h3>{item.name} </h3>
                                 <div>{item.goal}</div>
                             </td>
                             <td> {item.items}</td>
                         </tr>
+                        ))}
                         </tbody>
                     </table>
-                </li>
-            ))}
-        </ul>
     )
 }
 

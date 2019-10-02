@@ -5,13 +5,10 @@ import SignOutButton from "../SignOut/SignOutButton";
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {withFirebase} from "../Firebase";
+import {setAdmin} from "../Redux/actions/actions"
 
 
-const LoginMenu = ({logged, email}) => {
-        // console.log(authUser)
-    console.log(logged)
-    console.log(email)
-    // const email = email;
+const LoginMenu = ({logged, email, firebase, isAdmin}) => {
 
     const [log, setLog] = useState(false)
 
@@ -28,13 +25,16 @@ const LoginMenu = ({logged, email}) => {
 
     useEffect(()=> {
         switchMenu()
+
+
     },[logged])
+
 
 
     return (
         <div>
-        {log === false && <LoginMenuNon/>}
-        {log === true && <LoginMenuAuth email={email}/>}
+        {log === true && <LoginMenuNon/>}
+        {log === false && <LoginMenuAuth email={email} isAdmin={isAdmin}/>}
         </div>
 )
 }
@@ -44,28 +44,32 @@ const LoginMenuNon = () => {
     return (
         <ul className='signBar' >
             <li className='item'>
-                <Link className='item-link' to={ROUTES.SIGN_UP}>Załóż konto</Link>
+                <Link className='item-link' to={ROUTES.SIGN_IN}>Zaloguj</Link>
             </li>
             <li className='item'>
-                <Link className='item-link' to={ROUTES.SIGN_IN}>Zaloguj</Link>
+                <Link className='item-link gold-frame' to={ROUTES.SIGN_UP}>Załóż konto</Link>
             </li>
         </ul>
     )
 }
 
 
-const LoginMenuAuth = ({email}) => {
+const LoginMenuAuth = ({email, isAdmin}) => {
 
     return (
         <ul className='signBar' >
             <li>
                 <div style={{color: 'black'}}>
-                    {email}
+                    { email ? <div> Cześć {email} </div> : <div/>}
                 </div>
             </li>
             <li className='item'>
                 <Link className='item-link' to={ROUTES.GIVEBACK}>Oddaj rzeczy</Link>
             </li>
+            {isAdmin &&  <li className='item'>
+                            <Link className='item-link' to={ROUTES.ADMIN}>Panel administracyjny</Link>
+                        </li>}
+
             <li className='item'>
                 <SignOutButton/>
             </li>
@@ -88,21 +92,17 @@ const LoginMenuAuth = ({email}) => {
 // }
 //
 const mapState = state => {
-    console.log(state)
     return {
-        user: state.userData,
-        logged: state.userData.logged,
-        email: state.userData.email,
+        logged: state.firebase.auth.isEmpty,
+        email: state.firebase.auth.email,
+        isAdmin: state.userData.admin,
     }
 }
 
-// const mapDispatch = dispatch => ({authenticateUser: getUser => dispatch(getLogin(getUser))})
-// store
+
+
+
 
 export default compose(
     withFirebase,
-    connect(mapState, null),)(LoginMenu);
-
-
-
-// export default LoginMenu;
+    connect(mapState),)(LoginMenu);

@@ -15,7 +15,7 @@ const config = {
 
 class Firebase {
     constructor() {
-        app.initializeApp(config);
+        // app.initializeApp(config);
 
         this.auth = app.auth();
         this.db = app.database();
@@ -23,13 +23,13 @@ class Firebase {
 
     // Auth API
 
-    doCreateUserWithEmailAndPassword = (email,password) =>
-        this.auth.createUserWithEmailAndPassword(email, password);
-
-    doSingInWithEmailAndPassword = (email, password) =>
-        this.auth.signInWithEmailAndPassword(email, password);
-
-    doSignOut = () => this.auth.signOut();
+    // doCreateUserWithEmailAndPassword = (email,password) =>
+    //     this.auth.createUserWithEmailAndPassword(email, password);
+    //
+    // doSignInWithEmailAndPassword = (email, password) =>
+    //     this.auth.signInWithEmailAndPassword(email, password);
+    //
+    // doSignOut = () => this.auth.signOut();
 
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
@@ -50,7 +50,7 @@ class Firebase {
 
 //    Form API
 
-    form = uid => this.db.ref(`forms/${uid}`);
+    form = uid => this.db.ref(`users/${uid}/forms`);
 
     forms = () => this.db.ref('forms');
 
@@ -60,7 +60,7 @@ class Firebase {
 
     fund = uid => this.db.ref(`who/fund/${uid}`);
 
-    funds = () => this.db.ref('who/fund');
+    fundations = () => this.db.ref('who/fund');
 
     local = uid => this.db.ref(`who/local/${uid}`);
 
@@ -70,8 +70,7 @@ class Firebase {
 
     ngos = () => this.db.ref('who/ngo');
 
-
-
 }
 
 export default Firebase;
+export { config}

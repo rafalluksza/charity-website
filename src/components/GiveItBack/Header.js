@@ -1,5 +1,5 @@
 import React from 'react'
-import Decoration from "../HomeHeader/Decoration";
+import Decoration from "../Elements/Decoration";
 
 const Header = () => {
 

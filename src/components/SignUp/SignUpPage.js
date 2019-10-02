@@ -1,15 +1,18 @@
 import React, {useState} from 'react'
-import Decoration from "../HomeHeader/Decoration";
-import Navigation from "../Navigation/Navigation";
+import Decoration from "../Elements/Decoration";
 import {withRouter} from 'react-router-dom'
 import * as ROUTES from './../../constants/routes'
 import {FirebaseContext, withFirebase} from '../Firebase';
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {signupAction} from "../Redux/actions/actions";
+import NavigationOther from "../Navigation/NavigationOther";
 
 const SignUpPage = () => {
 
     return (
         <div>
-            <Navigation/>
+            <NavigationOther/>
             <div className='login'>
                 <h2>Załóż konto</h2>
                 <Decoration/>
@@ -71,36 +74,38 @@ const SignUpFormBase = (props) => {
     }
 
     const registration = () => {
-        if (emailValidation === true && passwordValidation=== true && secondPasswordValidation===true){
-            props.firebase
-                .doCreateUserWithEmailAndPassword(emailValue, passwordValue)
-                .then(authUser => {
-                    return props.firebase
-                        .user(authUser.user.uid)
-                        .set({
-                            username: emailValue,
-                            email: emailValue,
-                        });
-                })
-                .then(() => {
-                    setEmailValue('');
-                    setPasswordValue('');
-                    setSecondPasswordValue('');
-                    setRegStatus(true);
-                    goToLanding();
-                }).catch(error=> {
-                console.log(error)
-            })
-        } else {
-            console.log('untrue')
-            setRegStatus(false);
-        }
+        props.signupAction(emailValue,passwordValue)
+        goToLanding()
+        // if (emailValidation === true && passwordValidation=== true && secondPasswordValidation===true){
+        //     props.firebase
+        //         .doCreateUserWithEmailAndPassword(emailValue, passwordValue)
+        //         .then(authUser => {
+        //             return props.firebase
+        //                 .user(authUser.user.uid)
+        //                 .set({
+        //                     username: emailValue,
+        //                     email: emailValue,
+        //                 });
+        //         })
+        //         .then(() => {
+        //             setEmailValue('');
+        //             setPasswordValue('');
+        //             setSecondPasswordValue('');
+        //             setRegStatus(true);
+        //             goToLanding();
+        //         }).catch(error=> {
+        //         console.log(error)
+        //     })
+        // } else {
+        //     console.log('untrue')
+        //     setRegStatus(false);
+        // }
     }
 
     const submitForm = (e) => {
-        validateEmail()
-        validatePassword()
-        validateSecondPassword()
+        // validateEmail()
+        // validatePassword()
+        // validateSecondPassword()
         e.preventDefault();
         registration()
     };
@@ -144,6 +149,16 @@ const SignUpFormBase = (props) => {
     )
 }
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const mapDispatch = dispatch => {
+    return {
+        signupAction: (email,password) => dispatch(signupAction(email,password))
+    }
+}
+
+const SignUpForm = compose(
+    withFirebase,
+    withRouter,
+    connect(null,mapDispatch)
+)(SignUpFormBase);
 
 export { SignUpForm };

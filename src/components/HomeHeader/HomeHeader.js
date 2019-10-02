@@ -1,15 +1,19 @@
 import React from 'react';
 import Intro from "./Intro";
+import Navigation from "../Navigation/Navigation";
 
 
 const HomeHeader = () => {
 
 
     return (
-        <div id='header'>
-            <div className='header-img' />
-            <Intro/>
-        </div>
+        <>
+            <Navigation/>
+            <div id='header'>
+                <div className='header-img' />
+                <Intro/>
+            </div>
+        </>
     )
 }
 
