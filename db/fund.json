@@ -1,0 +1,16 @@
+{
+  "email": [
+    {
+      "id": 1,
+      "name": "Fundacja Dbam o zdrowie",
+      "email": "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej",
+      "textarea": "ubrania, jedzenie, sprzęt AGD, meble, zabawki"
+    },
+    {
+      "name": "jan",
+      "email": "jan@jan.pl",
+      "textarea": "http://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\nhttp://localhost:5000/email\n",
+      "id": 2
+    }
+  ]
+}

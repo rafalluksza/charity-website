@@ -4,7 +4,7 @@ import React from 'react'
 const ColumnItem = (props) => {
 
     return (
-        <div className='column-item'>
+        <div className='columnItem'>
             <h1>{props.num}</h1>
             <h3>{props.title}</h3>
             <p>{props.p}</p>

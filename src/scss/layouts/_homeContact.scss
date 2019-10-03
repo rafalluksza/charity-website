@@ -71,7 +71,7 @@ textarea {
 }
 
 .footer {
-  position: sticky;
+  position: static;
   display: flex;
   bottom: 0;
   justify-content: flex-end;
@@ -81,5 +81,11 @@ textarea {
     width: 180px;
     margin-right: calc(50% - 190px);
   }
+
+}
+
+.invalid {
+  font-size: 10px;
+  color: red;
 
 }
