@@ -5,8 +5,6 @@ import SignOutButton from "../SignOut/SignOutButton";
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {withFirebase} from "../Firebase";
-import {setAdmin} from "../Redux/actions/actions"
-
 
 const LoginMenu = ({logged, email, firebase, isAdmin}) => {
 

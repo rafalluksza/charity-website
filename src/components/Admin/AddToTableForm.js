@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import Button from "@material-ui/core/Button";
-import {compose} from "redux";
 import {withFirebase} from "../Firebase";
 
 
