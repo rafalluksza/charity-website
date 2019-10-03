@@ -1,0 +1,72 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 503px;
+  height: 500px;
+  position: absolute;
+  left: calc(50% - 251px);
+  top: 20vw;
+  h2 {
+    padding-bottom: $padding-main*2;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-background;
+    width: 384px;
+    height: 328px;
+    margin: $padding-main*2 0;
+    input {
+      outline: none;
+      margin: 0;
+      border: none;
+      background-color: $color-background;
+      border-bottom: 1px solid grey;
+      width: 60%;
+      padding: $padding-main/2 0;
+    }
+
+    label {
+      margin-left: 80px;
+      margin-top: $padding-main;
+      align-self: flex-start;
+    }
+
+  }
+}
+
+
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-background;
+  width: 384px;
+  height: 235px;
+  margin: $padding-main*2 0;
+  input {
+    outline: none;
+    margin: 0;
+    width: 200px;
+    border: none;
+    background-color: $color-background;
+    border-bottom: 1px solid grey;
+    padding: $padding-main/2 0;
+  }
+  label {
+    margin-left: 90px;
+    margin-top: $padding-main;
+    align-self: flex-start;
+  }
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,35 @@
+#about {
+  height: 935px;
+  width: 100vw;
+  background-color: $color-background;
+  display: flex;
+  .img {
+    background-image: url("../../assets/People.jpg");
+    height: 100%;
+    width: 50%;
+  }
+  .content-conteiner{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+  }
+}
+
+.content {
+  width: 50%;
+  margin: auto;
+  h2 {
+    margin: $padding-main 0;
+  }
+  h3 {
+    margin: $padding-main 0;
+    line-height: 2;
+    text-align: center;
+  }
+  img {
+    margin: $padding-main 0 ;
+    align-self: flex-end;
+  }
+}

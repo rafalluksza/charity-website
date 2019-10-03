@@ -1,0 +1,26 @@
+
+//colors
+
+$color-background: #F0F1F1;
+$color-text: #737373;
+$color-accent: #FAD648;
+$color-accent-sec: #FAD648;
+$color-blog: #829191;
+
+
+$main-padding: 20px;
+
+
+$shadow-main: 0 2px 0 0 rgba($color-text, 0.4);
+
+
+//media queries
+
+$desktop: "(min-width: 1024px";
+$tablet: "(min-width: 768px)";
+$phone: "(max-width: 767px)";
+
+
+.visible {
+  display: none;
+}

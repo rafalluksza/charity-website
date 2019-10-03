@@ -1,0 +1,10 @@
+$padding-main : 20px;
+
+.decoration {
+  background-image: url("../../assets/Decoration.svg");
+  background-repeat: no-repeat;
+  width: 253px;
+  height: 33px;
+  margin-top: $main-padding;
+  padding: $padding-main 0;
+}
