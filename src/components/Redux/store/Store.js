@@ -1,21 +1,40 @@
-import {createStore, applyMiddleware, combineReducers} from "redux";
+import {createStore, applyMiddleware, combineReducers, compose} from "redux";
+import firebase from 'firebase/app';
 import thunk from "redux-thunk";
-import giveBack from "../reducers/GiveBack";
 import { logger } from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {reducer as formReducer} from "redux-form";
 import userData from "../reducers/UserData";
+import { firebaseReducer , reactReduxFirebase, getFirebase} from 'react-redux-firebase';
+import { config as firebaseConfig } from '../../Firebase/firebase';
 
-const middleware = [thunk, logger];
+
+// react-redux-firebase options
+
+const config = {
+    // userProfile: 'users', // firebase root where user profiles are stored
+    // enableLogging: true, // enable/disable Firebase's database logging
+    onAuthStateChanged: true,
+};
+
+
+const middleware = [thunk.withExtraArgument(getFirebase), logger];
 
 const rootReducer = combineReducers({
-    giveBack,
     userData,
+    firebase: firebaseReducer,
     form: formReducer,
 });
 
-const store = createStore(
+firebase.initializeApp(firebaseConfig)
+
+// Add redux Firebase to compose
+const createStoreWithFirebase = compose(
+    reactReduxFirebase(firebase, config)
+)(createStore);
+
+const store = createStoreWithFirebase(
     rootReducer,
-    composeWithDevTools(applyMiddleware(...middleware)));
+    composeWithDevTools(applyMiddleware(...middleware)),);
 
 export default store;

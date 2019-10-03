@@ -1,17 +1,19 @@
-import React, {useState, useEffect} from 'react'
-import Decoration from "../HomeHeader/Decoration";
-import Navigation from "../Navigation/Navigation";
+import React, {useState} from 'react'
+import { connect } from 'react-redux';
+import Decoration from "../Elements/Decoration";
 import { withRouter} from 'react-router-dom';
+import {loginAction} from '../Redux/actions/actions'
 import {withFirebase} from "../Firebase";
 import * as ROUTES from '../../constants/routes';
 import {compose} from 'recompose';
+import NavigationOther from "../Navigation/NavigationOther";
 // import {connect} from 'react-redux';
 
 
 const SignInPage = () => {
     return (
         <div>
-            <Navigation/>
+            <NavigationOther/>
             <div className='login'>
                 <h2>Zaloguj się</h2>
                 <Decoration/>
@@ -32,32 +34,28 @@ const SignInFormBase = (props) => {
     const [passwordValidation, setPasswordValidation] = useState(true)
 
 
-    // useEffect(()=> {
-    //     validateEmail();
-    // },[emailValue]);
-    //
-    // useEffect(()=> {
-    //     validatePassword();
-    // },[passwordValue]);
-
     const re = /\S+@\S+\.\S+/;
     const submitForm = (e) => {
-        if (re.test(emailValue) === false)
-            return setEmailValidation(false)
-        if (passwordValue.length < 6)
-            return setPasswordValidation(false)
+        // if (re.test(emailValue) === false)
+        //     return setEmailValidation(false)
+        // if (passwordValue.length < 6)
+        //     return setPasswordValidation(false)
         e.preventDefault()
+        props.loginAction(emailValue,passwordValue)
+        setEmailValue('');
+        setPasswordValue('');
+        props.history.push(ROUTES.LANDING);
+        // if (emailValidation === true && passwordValidation === true) {
+            // console.log('logowanie')
+            // props.loginAction(emailValue, passwordValue)
 
-        if (emailValidation === true && passwordValidation === true) {
-            props.firebase
-                .doSingInWithEmailAndPassword(emailValue, passwordValue)
-                .then(() => {
-                    setEmailValue('');
-                    setPasswordValue('');
-                    props.history.push(ROUTES.LANDING);
-                })
-                .catch(error => console.log(error));
-        }
+            // props.firebase
+            //     .doSingInWithEmailAndPassword(emailValue, passwordValue)
+            //     .then(() => {
+
+                // })
+                // .catch(error => console.log(error));
+        // }
 
     };
 
@@ -96,8 +94,14 @@ const SignInFormBase = (props) => {
     )
 }
 
+const mapDispatch = dispatch => ({
+        loginAction: (login, password) =>  dispatch(loginAction(login, password))
+    }
+)
+
 const SignInForm = compose(
     withRouter,
-    withFirebase
+    withFirebase,
+    connect(null, mapDispatch)
 )(SignInFormBase);
 export {SignInForm}

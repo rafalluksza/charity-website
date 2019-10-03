@@ -1,97 +1,112 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types';
+import React, { useState} from 'react'
 import WizardFirstStep from "./Wizard/WizardFirstStep";
 import WizardSecondStep from "./Wizard/WizardSecondStep";
 import WizardThirdStep from "./Wizard/WizardThirdStep";
 import WizardFourthStep from "./Wizard/WizardFourthStep";
-// import {connect} from "react-redux";
+import WizardFifthStep from "./Wizard/WizardFifthStep";
+import Important from "./Important";
+import {withFirebase} from "../Firebase/context";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import WizardSixthStep from "./Wizard/WizardSixthStep";
 
 
-// const WizardForm = (props) => {
-//     const {onSubmit} = props
-//
-//     const [page, setPage] = useState(1);
-//     // const [nextPage, setNextPage] = useState(page);
-//     // const [prevPage, setPrevPage] = useState(page);
-//
-//      console.log(page)
-//     const nextPage = () => {
-//         console.log(page)
-//         setPage(page+1);
-//         console.log(page)
-//     }
-//     const prevPage = ()=> {
-//         setPage(page-1);
-//         console.log(page)
-//
-//     }
-//
-//
-//     useEffect(()=> {
-//         console.log(page)
-//
-//     },[page])
-//
+const WizardForm = ({firebase, uid}) => {
 
-class WizardForm extends Component {
-    constructor(props) {
-        super(props)
-        this.nextPage = this.nextPage.bind(this)
-        this.prevPage = this.prevPage.bind(this)
-        this.state = {
-            page: 1
-        }
-    }
-    nextPage() {
-        this.setState({ page: this.state.page + 1 })
+    // console.log(firebase, uid)
+    const [page, setPage] = useState(1);
+
+    const nextPage = ()=> {
+        setPage(page+1)
     }
 
-    prevPage() {
-        this.setState({ page: this.state.page - 1 })
+    const prevPage = () => {
+        setPage(page-1)
     }
 
 
+    const onSubmit = (values) => {
+        // window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+        // console.log(values, uid);
 
-    render() {
-        const { onSubmit } = this.props
-        const { page } = this.state
-        return (
-            <div>
-                {page === 1 && <WizardFirstStep onSubmit={this.nextPage}/>}
-                {page === 2 && (
+        firebase.form(uid).push({
+            ...values
+        });
+        nextPage()
+    }
+
+    return (
+        <div>
+            {page === 1 &&
+            <>
+                <Important page={page}/>
+                <div className='bg-form'>
+                <WizardFirstStep onSubmit={nextPage}/>
+                </div>
+            </>}
+            {page === 2 && (
+                <>
+                    <Important page={page}/>
+                    <div className='bg-form'>
                     <WizardSecondStep
-                        prevPage={this.prevPage}
-                        onSubmit={this.nextPage}
+                        prevPage={prevPage}
+                        onSubmit={nextPage}
                     />
-                )}
-                {page === 3 && (
+                    </div>
+                </>
+            )}
+            {page === 3 && (
+                <>
+                    <Important page={page}/>
+                    <div className='bg-form'>
                     <WizardThirdStep
-                        prevPage={this.prevPage}
-                        onSubmit={this.nextPage}
+                        prevPage={prevPage}
+                        onSubmit={nextPage}
                     />
-                )}
-                {page === 4 && (
+                    </div>
+                </>
+            )}
+            {page === 4 && (
+                <>
+                    <Important page={page}/>
+                    <div className='bg-form'>
                     <WizardFourthStep
-                        prevPage={this.prevPage}
+                        prevPage={prevPage}
+                        onSubmit={nextPage}
+                    />
+                    </div>
+                </>
+            )}
+            {page === 5 && (
+                <>
+                    <Important page={page}/>
+                    <div className='bg-form'>
+                    <WizardFifthStep
+                        prevPage={prevPage}
                         onSubmit={onSubmit}
                     />
-                )}
-            </div>
-        )
-    }
+                    </div>
+                </>
+            )}
+            {page === 6 && (
+                <>
+                <div className='bg-form'>
+                <WizardSixthStep/>
+                </div>
+                </>
+            )}
+        </div>
+    )
 };
 
-WizardForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired
-};
-
-// const mapState = state => ({
-//     form: state
-// })
-//
+const mapState = ({ firebase }) => ({
+        uid: firebase.auth.uid,
+    });
 // const mapDispatch = dispatch => ({
 //     next: (value) => dispatch(addForm(value))
 // })
-//
-// export default connect(mapState, mapDispatch)(WizardForm);
-export default WizardForm;
+
+
+export default compose(
+    withFirebase,
+    connect(mapState))(WizardForm);

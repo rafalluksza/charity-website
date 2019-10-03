@@ -12,6 +12,7 @@ const ContactForm = (props) => {
 
     const [isFormSend, setIsFormSend ] = useState(false)
 
+
     const sendData = () => {
 
         props.firebase.messages().push({
@@ -23,6 +24,9 @@ const ContactForm = (props) => {
             setEmailValue('')
             setTextareaValue('')
             setIsFormSend(true)
+            setTimeout(()=> {
+                setIsFormSend(false)
+            },3000)
         });
 
     };
@@ -39,7 +43,7 @@ const ContactForm = (props) => {
     }
 
     const validateTextarea = (textareaValue) => {
-       if (textareaValue.length < 120)
+       if (textareaValue.length < 20)
            return setTextareaValidation(false)
     }
 
@@ -53,7 +57,7 @@ const ContactForm = (props) => {
 
     return (
         <>
-            <div className={{backgroundColor:'green'}}>{isFormSend ? 'Formularz wysłano' : ''}</div>
+        {isFormSend && <div className='alert alert-success mt-2'> Formularz wysłano </div> }
             <form onSubmit={submitForm}>
                 <div className='form'>
                     <div className='form-inputs'>

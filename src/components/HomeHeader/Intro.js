@@ -1,5 +1,5 @@
 import React from 'react';
-import Decoration from "./Decoration";
+import Decoration from "../Elements/Decoration";
 import Button2 from "../Buttons/Button2";
 import Button1 from "../Buttons/Button1";
 

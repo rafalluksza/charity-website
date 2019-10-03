@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Decoration from "../HomeHeader/Decoration";
+import Decoration from "../Elements/Decoration";
 import ButtonFund from "../Buttons/ButtonFund";
 import TableFund from "./TableFund";
 

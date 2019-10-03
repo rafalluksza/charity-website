@@ -4,7 +4,7 @@ import * as ROUTES from './../../constants/routes';
 
 
 
-const NavMenu = () => {
+const NavMenuLanding = () => {
     return (
         <ul className='navigation'>
             <li className='item'>
@@ -26,4 +26,4 @@ const NavMenu = () => {
     )
 }
 
-export default NavMenu;
+export default NavMenuLanding;

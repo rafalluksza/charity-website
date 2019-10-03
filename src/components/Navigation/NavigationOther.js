@@ -1,18 +1,18 @@
 import React from 'react';
-import NavMenuLanding from "./NavMenuLanding";
 import LoginMenu from "./LoginMenu";
+import NavMenuOther from "./NavMenuOther";
 
 
 
-const Navigation = () => {
+const NavigationOther = () => {
 
     return (
         <div className='topMenu'>
                 <LoginMenu/>
-                <NavMenuLanding/>
+                <NavMenuOther/>
         </div>
     )
 }
 
 
-export default Navigation;
+export default NavigationOther;
