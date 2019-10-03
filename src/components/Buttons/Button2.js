@@ -1,13 +1,17 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
+import { withRouter} from 'react-router-dom';
+import {compose} from "recompose";
 
+const Button2 = ({history}) => {
 
-
-const Button2 = () => {
+    const handleClick = () => {
+        history.push(ROUTES.SIGN_UP);
+    }
 
     return (
-        <button className='btn-custom'><Link to='/logowanie'>Zorganizuj <br/>zbiórkę </Link></button>
+        <button className='btn-custom' onClick={handleClick}>Zorganizuj <br/>zbiórkę</button>
     )
 }
 
-export default Button2;
+export default compose(withRouter)(Button2);

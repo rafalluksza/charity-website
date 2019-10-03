@@ -5,27 +5,29 @@ import UserList from "./UserList";
 const AdminPage = (props) => {
 
     const [loading, setLoading ] = useState(false);
-    const [users, setUsers ] = useState([]);
+    const [messages, setMessages ] = useState([]);
 
     useEffect(()=> {
         setLoading(true);
 
-        props.firebase.users().on('value', snapshot => {
-            const usersObject = snapshot.val();
-            const usersList = Object.keys(usersObject).map(key => ({
-                ...usersObject[key],
+        props.firebase.messages().on('value', snapshot => {
+            const messagesObject = snapshot.val();
+            const messagesList = Object.keys(messagesObject).map(key => ({
+                ...messagesObject[key],
                 uid: key,
             }));
-            setUsers(usersList);
+            setMessages(messagesList);
             setLoading(false)
         });
     },[]);
 
     return (
         <div>
-            <h1>Admin</h1>
+            <div className='admin-header'>
+                <h2>Strona administratora</h2>
+            </div>
             { loading && <div>Loading...</div>}
-            <UserList users={users}/>
+            <UserList messages={messages}/>
         </div>
 
     )

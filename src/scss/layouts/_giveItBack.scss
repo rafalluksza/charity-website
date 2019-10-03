@@ -1,0 +1,50 @@
+#header-gib {
+  height: 963px;
+  width: 100vw;
+  .header-img {
+    background-image: url('./../../assets/Form-Hero-Image.jpg');
+    background-repeat: no-repeat;
+    height: 100%;
+    left: -483px;
+    position: relative;
+  }
+}
+
+
+
+.important {
+  width: 100vw;
+  height: 179px;
+  background-color: $color-accent;
+  .important-text {
+    width: 80vw;
+    height: 179px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+.intro-gib{
+  width: 710px;
+  height: 350px;
+  position: absolute;
+  //border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 300px;
+  right: -250px;
+  h2 {
+    text-align: center;
+    margin: $padding-main 0 ;
+  }
+}
+
+.firstStepForm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}

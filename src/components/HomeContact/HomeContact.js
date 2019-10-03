@@ -1,6 +1,7 @@
 import React from 'react'
 import Decoration from "../HomeHeader/Decoration";
 import ContactForm from "./ContactForm";
+import {FirebaseContext} from "../Firebase";
 
 
 const HomeContact = () => {
@@ -12,7 +13,9 @@ const HomeContact = () => {
                 <div className='form-column'>
                     <h2>Skontaktuj się z nami</h2>
                     <Decoration/>
-                    <ContactForm/>
+                    <FirebaseContext.Consumer>
+                        {firebase => <ContactForm firebase={firebase}/>}
+                    </FirebaseContext.Consumer>
                 </div>
                 <div className='footer'>
                     <p>Copyright by Coders Lab</p>
@@ -25,5 +28,6 @@ const HomeContact = () => {
         </div>
     )
 }
+
 
 export default HomeContact;

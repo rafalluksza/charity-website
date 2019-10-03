@@ -1,8 +1,6 @@
-import React, {useState,useEffect} from 'react';
-import axios from "axios";
+import React, {useState} from 'react';
 
-
-const ContactForm = () => {
+const ContactForm = (props) => {
 
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
@@ -12,34 +10,21 @@ const ContactForm = () => {
     const [nameValidation, setNameValidation] = useState(true)
     const [textareaValidation, setTextareaValidation] = useState(true)
 
-
-    const url = 'http://localhost:5000/email';
+    const [isFormSend, setIsFormSend ] = useState(false)
 
     const sendData = () => {
-        console.log(nameValue)
-        console.log(emailValue)
-        console.log(textareaValue)
 
-        axios.post(url,
-            {
+        props.firebase.messages().push({
             name: nameValue,
             email: emailValue,
-            textarea: textareaValue
-            },
-            {
-            headers: {
-                'Content-Type' : 'application/json',
-            }
-        }).then( (response) => {
-            console.log(response)
-            console.log(response.data);
-            console.log(response.status);
-            console.log(response.statusText);
-            console.log(response.headers);
-            console.log(response.config);
-        }).catch( (error) => {
-                console.log(error)
-            })
+            message: textareaValue
+        }).then(()=>{
+            setNameValue('')
+            setEmailValue('')
+            setTextareaValue('')
+            setIsFormSend(true)
+        });
+
     };
 
 
@@ -67,31 +52,34 @@ const ContactForm = () => {
     }
 
     return (
-        <form onSubmit={submitForm}>
-            <div className='form'>
-                <div className='form-inputs'>
-                    <div className='form-item'>
-                        <label> Wpisz swoje imię</label>
-                        <input type='text' placeholder='Krzysztof' onChange={e => setNameValue(e.target.value)} value={nameValue}/>
-                        <div className='invalid'>{ nameValidation ? '' : 'Podane imię jest nieprawidłowe!'}</div>
+        <>
+            <div className={{backgroundColor:'green'}}>{isFormSend ? 'Formularz wysłano' : ''}</div>
+            <form onSubmit={submitForm}>
+                <div className='form'>
+                    <div className='form-inputs'>
+                        <div className='form-item'>
+                            <label> Wpisz swoje imię</label>
+                            <input type='text' placeholder='Krzysztof' onChange={e => setNameValue(e.target.value)} value={nameValue}/>
+                            <div className='invalid'>{ nameValidation ? '' : 'Podane imię jest nieprawidłowe!'}</div>
 
+                        </div>
+                        <div className='form-item'>
+                            <label> Wpisz swój email</label>
+                            <input type='text' placeholder='abc@xyz.pl' onChange={e => setEmailValue(e.target.value)} value={emailValue}/>
+                            <div className='invalid'>{ emailValidation ? '' : 'Podany email jest nieprawidłowy!'}</div>
+
+                        </div>
                     </div>
-                    <div className='form-item'>
-                        <label> Wpisz swój email</label>
-                        <input type='text' placeholder='abc@xyz.pl' onChange={e => setEmailValue(e.target.value)} value={emailValue}/>
-                        <div className='invalid'>{ emailValidation ? '' : 'Podany email jest nieprawidłowy!'}</div>
-
+                    <div className='form-textarea'>
+                        <label> Wpisz swoją wiadomość</label>
+                        <textarea onChange={e => setTextareaValue(e.target.value)} value={textareaValue}
+                            placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida eget justo in imperdiet. Phasellus et lacinia libero. Donec elementum bibendum mi, et consectetur purus euismod ut. Donec faucibus sit.'/>
+                        <div className='invalid'>{ textareaValidation ? '' : 'Wiadomośc musi miec conajmniej 120 znaków!'}</div>
                     </div>
                 </div>
-                <div className='form-textarea'>
-                    <label> Wpisz swoją wiadomość</label>
-                    <textarea onChange={e => setTextareaValue(e.target.value)} value={textareaValue}
-                        placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida eget justo in imperdiet. Phasellus et lacinia libero. Donec elementum bibendum mi, et consectetur purus euismod ut. Donec faucibus sit.'/>
-                    <div className='invalid'>{ textareaValidation ? '' : 'Wiadomośc musi miec conajmniej 120 znaków!'}</div>
-                </div>
-            </div>
-            <button className='btnReg'>Wyślij</button>
-        </form>
+                <button className='btnReg'>Wyślij</button>
+            </form>
+        </>
     )
 }
 
