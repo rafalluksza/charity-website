@@ -16,6 +16,7 @@
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
     "react-form-checkbox": "^0.2.0",
+    "react-hook-form": "^3.23.18",
     "react-redux": "^7.1.1",
     "react-redux-firebase": "^2.4.1",
     "react-router-dom": "^5.1.2",

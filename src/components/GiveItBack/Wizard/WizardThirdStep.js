@@ -1,28 +1,28 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { ReduxCheckbox, Checkboxes } from 'react-form-checkbox';
 
 
 const WizardThirdStep = ( {handleSubmit, prevPage}) => {
 
-    const renderCheckbox = ({ input, label }) => {
-        console.log(input)
-     return   (
-        // console.log(input)
-        <div>
-            <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={input.value? true : false}
-                        onChange={input.onChange}
-                    />
-                }
-                label={label}
-            />
-        </div>
-    )}
+    // const renderCheckbox = ({ input, label }) => {
+    //     console.log(input)
+    //  return   (
+    //     // console.log(input)
+    //     <div>
+    //         <FormControlLabel
+    //             control={
+    //                 <Checkbox
+    //                     checked={input.value? true : false}
+    //                     onChange={input.onChange}
+    //                 />
+    //             }
+    //             label={label}
+    //         />
+    //     </div>
+    // )}
 
     let options = [
         {label: 'Dzieciom', value: ' Dzieciom '},

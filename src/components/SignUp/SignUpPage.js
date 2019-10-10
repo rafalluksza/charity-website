@@ -7,6 +7,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {signupAction} from "../Redux/actions/actions";
 import NavigationOther from "../Navigation/NavigationOther";
+import useForm from "react-hook-form";
 
 const SignUpPage = () => {
 
@@ -28,44 +29,15 @@ const SignUpPage = () => {
 export default SignUpPage;
 
 const SignUpFormBase = (props) => {
+    const {register, handleSubmit, errors, watch } = useForm();
+
 
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
     const [secondPasswordValue, setSecondPasswordValue] = useState('');
 
-    const [emailValidation, setEmailValidation] = useState(null);
-    const [passwordValidation, setPasswordValidation] = useState(null);
-    const [secondPasswordValidation, setSecondPasswordValidation] = useState(null);
-
     const [regStatus, setRegStatus] = useState(null);
 
-    // useEffect(()=> {
-    //     validateEmail();
-    //     validatePassword();
-    //     validateSecondPassword();
-    // },[emailValue, passwordValue, secondPasswordValue])
-
-    const validateEmail = () => {
-
-        const re = /\S+@\S+\.\S+/;
-        return setEmailValidation(re.test(emailValue))
-    };
-
-    const validatePassword = () => {
-
-        if (passwordValue.length >= 6)
-            return setPasswordValidation(true)
-        else
-            return setPasswordValidation(false)
-    };
-
-    const validateSecondPassword = () => {
-
-        if (secondPasswordValue.length >= 6 && passwordValue === secondPasswordValue)
-            return setSecondPasswordValidation(true)
-        else
-            return setSecondPasswordValidation(false)
-    };
 
     const goToLanding = () => {
         setTimeout(()=>{
@@ -78,11 +50,8 @@ const SignUpFormBase = (props) => {
         goToLanding()
     }
 
-    const submitForm = (e) => {
-        // validateEmail()
-        // validatePassword()
-        // validateSecondPassword()
-        e.preventDefault();
+    const submitForm = () => {
+        setRegStatus(true);
         registration()
     };
 
@@ -92,28 +61,32 @@ const SignUpFormBase = (props) => {
 
 
     return (
-        <form onSubmit={submitForm}>
+        <form onSubmit={handleSubmit(submitForm)}>
             <div className='form'>
                 <div>
                     { regStatus === null && <div/>}
                     { regStatus === true && <div style={{color:'green'}}>Gratulacje! Rejestracja udana!</div>}
-                    { regStatus === false &&  <div style={{color:'red'}}>Rejestracja nieudana!</div>}
                 </div>
                 <label> Email</label>
-                <input type='email' onChange={e => setEmailValue(e.target.value)} value={emailValue}/>
-                { emailValidation === null && <div/>}
-                { emailValidation === true && <div/>}
-                { emailValidation === false &&  <div className='invalid'>Podany email jest nieprawidłowy</div>}
+                <input type='email' placeholder='Podaj email' name="email" ref={register({required: true, pattern: /\S+@\S+\.\S+/})} onChange={e => setEmailValue(e.target.value)} value={emailValue}/>
+                { errors.email &&  <div className='invalid'>Podany email jest nieprawidłowy!</div>}
 
                 <label> Hasło</label>
-                <input type='password' placeholder='podaj hasło' onChange={e => setPasswordValue(e.target.value) } value={passwordValue}/>
-                { passwordValidation === null && <div/>}
-                { passwordValidation === true && <div/>}
-                { passwordValidation === false &&  <div className='invalid'>Podane hasło jest za krótkie</div>}
+                <input type='password' name="password"
+                       ref={register({required: true, minLength: 6})}
+                       placeholder='Podaj hasło'
+                       onChange={e => setPasswordValue(e.target.value) } value={passwordValue}/>
+
+                { errors.password &&  <div className='invalid'>Podane hasło jest za krótkie!</div>}
 
                 <label> Powtórz hasło</label>
-                <input type='password' placeholder='potwierdź hasło' onChange={e => setSecondPasswordValue(e.target.value) } value={secondPasswordValue}/>
-                <div className='invalid'>{secondPasswordValidation===null ? '' : 'Podane hasła muszą byc takie same'}</div>
+                <input type='password' name="secondPassword"
+                       ref={register({required: true, validate: (value) => {return value === watch("password");}})}
+                       placeholder='Potwierdź hasło'
+                       onChange={e => setSecondPasswordValue(e.target.value) }
+                       value={secondPasswordValue}
+                />
+                {errors.secondPassword && <div className='invalid'>Podane hasła muszą byc takie same!</div>}
 
 
             </div>

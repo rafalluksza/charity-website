@@ -6,7 +6,7 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {withFirebase} from "../Firebase";
 
-const LoginMenu = ({logged, email, firebase, isAdmin}) => {
+const LoginMenu = ({logged, email, isAdmin}) => {
 
     const [log, setLog] = useState(false)
 
@@ -22,9 +22,7 @@ const LoginMenu = ({logged, email, firebase, isAdmin}) => {
     }
 
     useEffect(()=> {
-        switchMenu()
-
-
+        switchMenu();
     },[logged])
 
 
@@ -75,20 +73,6 @@ const LoginMenuAuth = ({email, isAdmin}) => {
     )
 }
 
-// const LoginMenuAdmin = () => {
-//
-//     return (
-//         <>
-//             <li className='item'>
-//                 <Link className='item-link' to={ROUTES.ADMIN}>Panel administracyjny</Link>
-//             </li>
-//             <li className='item'>
-//                 <SignOutButton/>
-//             </li>
-//         </>
-//     )
-// }
-//
 const mapState = state => {
     return {
         logged: state.firebase.auth.isEmpty,
@@ -96,9 +80,6 @@ const mapState = state => {
         isAdmin: state.userData.admin,
     }
 }
-
-
-
 
 
 export default compose(

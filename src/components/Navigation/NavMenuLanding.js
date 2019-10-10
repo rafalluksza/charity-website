@@ -17,7 +17,7 @@ const NavMenuLanding = () => {
                 <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='about'>O nas</Link>
             </li>
             <li className='item'>
-                <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='who'>Fundacja i organizacje</Link>
+                <Link className='item-link' style={{width: "190px"}} activeClass='active' smooth={true} isDynamic={true} to='who'>Fundacja i organizacje</Link>
             </li>
             <li className='item'>
                 <Link className='item-link' activeClass='active' smooth={true} isDynamic={true} to='contact'>Kontakt</Link>
