@@ -12,7 +12,6 @@ import Registration from "./components/SignUp/SignUpPage";
 import SignOut from "./components/SignOut/SignOut";
 import GiveItBack from './components/GiveItBack/GiveItBack';
 import AdminPage from "./components/Admin/AdminPage";
-import Navigation from "./components/Navigation/Navigation";
 import { setAdmin } from "./components/Redux/actions/actions";
 import {compose} from "redux";
 import {withFirebase} from "./components/Firebase";

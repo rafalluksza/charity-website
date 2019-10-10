@@ -76,30 +76,6 @@ const SignUpFormBase = (props) => {
     const registration = () => {
         props.signupAction(emailValue,passwordValue)
         goToLanding()
-        // if (emailValidation === true && passwordValidation=== true && secondPasswordValidation===true){
-        //     props.firebase
-        //         .doCreateUserWithEmailAndPassword(emailValue, passwordValue)
-        //         .then(authUser => {
-        //             return props.firebase
-        //                 .user(authUser.user.uid)
-        //                 .set({
-        //                     username: emailValue,
-        //                     email: emailValue,
-        //                 });
-        //         })
-        //         .then(() => {
-        //             setEmailValue('');
-        //             setPasswordValue('');
-        //             setSecondPasswordValue('');
-        //             setRegStatus(true);
-        //             goToLanding();
-        //         }).catch(error=> {
-        //         console.log(error)
-        //     })
-        // } else {
-        //     console.log('untrue')
-        //     setRegStatus(false);
-        // }
     }
 
     const submitForm = (e) => {

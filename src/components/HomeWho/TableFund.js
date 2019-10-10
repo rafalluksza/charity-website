@@ -42,8 +42,10 @@ const TableFund = (props) => {
     return (
         <div className="table">
             { url === 'fund' && <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>}
-            { url === 'local' && <p> Lorem ipsum blablaba</p>}
-            { url === 'ngo' && <p> Lorem ipsum 3 strona</p>}
+            { url === 'local' && <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet dictum mi, et vehicula.
+            </p>}
+            { url === 'ngo' && <p> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi.
+            </p>}
             <TableData posts={currentPosts} loading={loading}/>
             <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
