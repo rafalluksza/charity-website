@@ -9,23 +9,7 @@ import NavigationOther from "../Navigation/NavigationOther";
 
 
 const AdminPage = (props) => {
-    console.log(props)
-    // const [loading, setLoading ] = useState(false);
-    // const [messages, setMessages ] = useState([]);
 
-    // useEffect(()=> {
-    //     setLoading(true);
-    //
-    //     props.firebase.messages().on('value', snapshot => {
-    //         const messagesObject = snapshot.val();
-    //         const messagesList = Object.keys(messagesObject).map(key => ({
-    //             ...messagesObject[key],
-    //             uid: key,
-    //         }));
-    //         setMessages(messagesList);
-    //         setLoading(false)
-    //     });
-    // },[]);
 
     return (
         <div>
